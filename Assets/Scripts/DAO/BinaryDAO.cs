@@ -21,7 +21,7 @@ public class BinaryDAO<K,T> : DAO<K,T>
 
     public string CompPath { get; }
 
-    protected override void deleteFromSerialization(K key)
+    protected override void DeleteFromSerialization(K key)
     {
         string pathname = CompPath + "\\" + key.ToString();
         if (File.Exists(pathname))
@@ -31,7 +31,7 @@ public class BinaryDAO<K,T> : DAO<K,T>
         
     }
 
-    protected override T getValueFromSerialization(K key)
+    protected override T GetValueFromSerialization(K key)
     {
         T t = default(T);
         string pathname = CompPath + "\\" + key.ToString();
@@ -46,7 +46,7 @@ public class BinaryDAO<K,T> : DAO<K,T>
         
     }
 
-    protected override void serialize(K key, T value)
+    protected override void Serialize(K key, T value)
     {
         string pathname = CompPath + "\\" + key.ToString();
         IFormatter formatter = new BinaryFormatter();

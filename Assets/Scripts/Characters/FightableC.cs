@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,6 +11,7 @@ using UnityEngine;
 public class FightableC : Character
 {
     protected Status s;
+    protected int currentHP;
 
     /// <summary>
     /// Creates a fightable character from a given lvl
@@ -30,6 +32,7 @@ public class FightableC : Character
             FClass = f;
             LVL = l;
             Stats = s;
+            currentHP = GetMaxHP();
         }
         else
         {
@@ -58,10 +61,46 @@ public class FightableC : Character
             }
         }
     }
-
-    public int getMaxHP()
+    /// <summary>
+    /// Returns the maximum HP of the target (depends on the LVL + constitution of the target)
+    /// </summary>
+    /// <returns> Health points</returns>
+    public int GetMaxHP()
     {
-        return 0;
+        return LVL.LVL * 10 + Stats.ConstiMod() * 10;
+    }
+
+    protected void ChangeHP(int modifier)
+    {
+        if(currentHP + modifier < 0)
+        {
+            currentHP = 0;
+        }else if(currentHP + modifier > GetMaxHP())
+        {
+            currentHP = GetMaxHP();
+        }
+        else
+        {
+            currentHP += modifier;
+        }
+    }
+
+    /// <summary>
+    /// Inflicts dommages to the character
+    /// </summary>
+    /// <param name="modifier"> Must be positive number to be effective or else it will heal the target</param>
+    public void DealHP(int modifier)
+    {
+        ChangeHP(-modifier);
+    }
+
+    /// <summary>
+    /// Heals dommages to the character
+    /// </summary>
+    /// <param name="modifier">Must be positive to be effective or else it will have the opposite effect on the target</param>
+    public void HealHP(int modifier)
+    {
+        ChangeHP(modifier);
     }
 }
 

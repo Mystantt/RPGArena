@@ -21,7 +21,7 @@ public abstract class DAO<K,T>
     /// <param name="key">the key associated to our object, its name, an id...</param>
     /// <returns>The object serialized, can return null if it wasn't serialized, be careful</returns>
 
-    public T find(K key)
+    public T Find(K key)
     {
         T t = default(T);
         if (dico.ContainsKey(key))
@@ -30,32 +30,32 @@ public abstract class DAO<K,T>
         }
         else
         {
-            t = getValueFromSerialization(key);
+            t = GetValueFromSerialization(key);
         }
         return t;
     }
 
     /// <summary>Delete an object T from our serialization</summary>
     /// <param name="key">the key associated to our object, its name, an id...</param>
-    public void delete(K key)
+    public void Delete(K key)
     {
         dico.Remove(key);
-        deleteFromSerialization(key);
+        DeleteFromSerialization(key);
     }
 
     /// <summary>Serialize a new object</summary>
     /// <param name="key">the key associated to our object, its name, an id...</param>
     /// <param name="value">our object</param>
-    public void register(K key, T value)
+    public void Register(K key, T value)
     {
         if (!value.Equals(null))
         {
             dico[key] = value;
-            serialize(key, value);
+            Serialize(key, value);
         }
     }
 
-    protected abstract void serialize(K key, T value);
-    protected abstract T getValueFromSerialization(K key);
-    protected abstract void deleteFromSerialization(K key);
+    protected abstract void Serialize(K key, T value);
+    protected abstract T GetValueFromSerialization(K key);
+    protected abstract void DeleteFromSerialization(K key);
 }

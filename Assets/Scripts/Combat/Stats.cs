@@ -58,4 +58,78 @@ public class Stats : MonoBehaviour
         }
     }
 
+    public void AddDex(int modifier)
+    {
+        if(modifier >= 0 && dex + modifier < 100)
+        {
+            dex += modifier;
+        }
+        else
+        {
+            throw new System.ArgumentException("Your Dexterity can't be removed or over 100");
+        }
+    }
+    public void AddStr(int modifier)
+    {
+        if (modifier >= 0 && stre + modifier < 100)
+        {
+            stre += modifier;
+        }
+        else
+        {
+            throw new System.ArgumentException("Your Strength can't be removed or over 100");
+        }
+    }
+    public void AddCha(int modifier)
+    {
+        if (modifier >= 0 && cha + modifier < 100)
+        {
+            cha += modifier;
+        }
+        else
+        {
+            throw new System.ArgumentException("Your Charisma can't be removed or over 100");
+        }
+    }
+    public void AddWisd(int modifier)
+    {
+        if (modifier >= 0 && wisd + modifier < 100)
+        {
+            wisd += modifier;
+        }
+        else
+        {
+            throw new System.ArgumentException("Your Wisdom can't be removed or over 100");
+        }
+    }
+    public void AddIntel(int modifier)
+    {
+        if (modifier >= 0 && intel + modifier < 100)
+        {
+            intel += modifier;
+        }
+        else
+        {
+            throw new System.ArgumentException("Your Intelligence can't be removed or over 100");
+        }
+    }
+    public void AddConsti(int modifier)
+    {
+        if (modifier >= 0 && consti + modifier < 100)
+        {
+            consti += modifier;
+        }
+        else
+        {
+            throw new System.ArgumentException("Your Constitution can't be removed or over 100");
+        }
+    }
+
+    public int DexMod() => dex / 2;
+    public int StrMod() => stre / 2;
+    public int WisdMod() => wisd / 2;
+    public int IntelMod() => intel / 2;
+    public int ChaMod() => cha / 2;
+    public int ConstiMod() => consti / 2;
+
 }
