@@ -5,6 +5,8 @@ using UnityEngine;
 [System.Serializable]
 /// <summary>
 /// Stats for every aspect of the game : Fighting and Social Skills for every fightable character
+/// Date : 05/03/2021
+/// Author : DOMPEY Fabien
 /// </summary>
 public class Stats : MonoBehaviour
 {

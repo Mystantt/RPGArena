@@ -22,16 +22,17 @@ public class FightableC : Character
     /// <param name="f">Fighting Class of the character(can't be null)</param>
     /// <param name="l">Level of the character see the Level Class (can't be null)</param>
     /// <param name="s">Stats of the character (can't be null)</param>
-    public FightableC(string name, string description, int id,FClass f,Level l,Stats s) : base(name, description, id)
+    public FightableC(string name, string description, int id,FClass f,Race r,Level l,Stats s) : base(name, description, id)
     {
         
-        if(!f.Equals(null) && !l.Equals(null) && !s.Equals(null))
+        if(!f.Equals(null) && !l.Equals(null) && !s.Equals(null) && !r.Equals(null))
         {
             Inventory = new Inventory();
             Equipment = new Equipment();
             FClass = f;
             LVL = l;
             Stats = s;
+            Race = r;
             currentHP = GetMaxHP();
         }
         else
@@ -39,6 +40,8 @@ public class FightableC : Character
             throw new System.ArgumentNullException("This fightable character can't be constructed because one of your argument is null");
         }
     }
+
+    public Race Race { get; }
 
     public Inventory Inventory { get; }
 
@@ -115,4 +118,15 @@ public enum Status
     FROZEN,
     GRAPPLED,
     HEALTHY
+}
+
+public enum Race
+{
+    HUMAN,
+    ELF,
+    DWARF,
+    WURM,
+    GOBLIN,
+    FIEND,
+    ANGEL
 }
