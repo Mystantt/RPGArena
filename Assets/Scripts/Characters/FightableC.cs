@@ -28,7 +28,7 @@ public class FightableC : Character
         if(!f.Equals(null) && !l.Equals(null) && !s.Equals(null) && !r.Equals(null))
         {
             Inventory = new Inventory();
-            Equipment = new Equipment();
+            Equipment = new EquipmentSet();
             FClass = f;
             LVL = l;
             Stats = s;
@@ -45,7 +45,7 @@ public class FightableC : Character
 
     public Inventory Inventory { get; }
 
-    public Equipment Equipment { get; }
+    public EquipmentSet Equipment { get; }
 
     public FClass FClass { get; }
 

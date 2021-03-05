@@ -14,7 +14,9 @@ public abstract class Item
     public int Value { get; }
     public int Weight { get; }
 
-    public Item(string name, string description,int value,int weight)
+    public int ID { get; }
+
+    public Item(string name, string description,int value,int weight, int id)
     {
         if(!name.Equals(null) && !description.Equals(null) && value >= 0 && weight >= 0)
         {
@@ -22,6 +24,7 @@ public abstract class Item
             Description = description;
             Value = value;
             Weight = weight;
+            ID = id;
         }
         else
         {
@@ -29,4 +32,14 @@ public abstract class Item
         }
     }
 
+}
+
+public enum Rarity
+{
+    COMMON,
+    UNCOMMON,
+    RARE,
+    EPIC,
+    MYTHIC,
+    UNIQUE
 }
