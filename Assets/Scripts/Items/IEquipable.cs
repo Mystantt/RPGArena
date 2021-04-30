@@ -10,5 +10,7 @@ public interface IEquipable
     /// <param name="s"> The stats of the character</param>
     /// <returns> If yes or no, the character can use the equipment </returns>
      bool CanBeEquiped(Stats s);
+
+    EquipmentType getPartType();
 }
 

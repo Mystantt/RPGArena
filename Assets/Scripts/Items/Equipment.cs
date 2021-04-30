@@ -34,6 +34,11 @@ public abstract class Equipment : Item, IEquipable
         allowed = (s.CompareTo(Requirements) >= 0);
         return allowed;
     }
+
+    public EquipmentType getPartType()
+    {
+        return Type;
+    }
 }
 
 public enum EquipmentType
