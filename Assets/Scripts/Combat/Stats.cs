@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,7 +9,7 @@ using UnityEngine;
 /// Date : 05/03/2021
 /// Author : DOMPEY Fabien
 /// </summary>
-public class Stats : MonoBehaviour
+public class Stats : IComparable
 {
     private int consti;
     private int dex;
@@ -134,4 +135,25 @@ public class Stats : MonoBehaviour
     public int ChaMod() => cha / 2;
     public int ConstiMod() => consti / 2;
 
+    /// <summary>
+    /// Compare two stats from characters or equipments
+    /// </summary>
+    /// <param name="obj"> A character or an equipment stats</param>
+    /// <returns> Zero if they are the same, superior to Zero if this instance of Stats is strictly superior , inferior to Zero otherwise </returns>
+    public int CompareTo(object obj)
+    {
+        int result = 1;
+        if (obj == null) return result;
+        Stats s = obj as Stats;
+        if (s != null)
+        {
+            result = this.cha.CompareTo(s.Charisma) + this.consti.CompareTo(s.Constitution) + this.dex.CompareTo(s.Dexterity) +
+                this.intel.CompareTo(s.Intelligence) + this.stre.CompareTo(s.Strength) + this.wisd.CompareTo(s.Wisdom);
+            return result;
+        }
+        else
+        {
+            throw new System.ArgumentException("Can't compare those objects");
+        }
+    }
 }

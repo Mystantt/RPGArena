@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 /// <summary>
 /// Class <c>Item</c> defining every object lootable through the game
 /// Date : 05/03/2021
@@ -16,15 +17,18 @@ public abstract class Item
 
     public int ID { get; }
 
-    public Item(string name, string description,int value,int weight, int id)
+    public Rarity Rarity { get; }
+
+    public Item(string name, string description,int value,int weight, int id, Rarity r)
     {
-        if(!name.Equals(null) && !description.Equals(null) && value >= 0 && weight >= 0)
+        if(!name.Equals(null) && !description.Equals(null) && value >= 0 && weight >= 0 && !r.Equals(null))
         {
             Name = name;
             Description = description;
             Value = value;
             Weight = weight;
             ID = id;
+            Rarity = r;
         }
         else
         {
