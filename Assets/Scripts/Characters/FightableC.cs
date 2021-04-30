@@ -12,6 +12,8 @@ public class FightableC : Character
 {
     protected Status s;
     protected int currentHP;
+    protected List<TypeDamages> resistances;
+    protected List<TypeDamages> weaknesses;
 
     /// <summary>
     /// Creates a fightable character from a given lvl
@@ -34,6 +36,31 @@ public class FightableC : Character
             Stats = s;
             Race = r;
             currentHP = GetMaxHP();
+            resistances = new List<TypeDamages>();
+            weaknesses = new List<TypeDamages>();
+        }
+        else
+        {
+            throw new System.ArgumentNullException("This fightable character can't be constructed because one of your argument is null");
+        }
+    }
+
+    public FightableC(string name, string description, int id, FClass f, Race r, Level l, Stats s,List<TypeDamages> res, List<TypeDamages> w) : base(name, description, id)
+    {
+
+        if (!f.Equals(null) && !l.Equals(null) && !s.Equals(null) && !r.Equals(null))
+        {
+            Inventory = new Inventory();
+            Equipment = new EquipmentSet();
+            FClass = f;
+            LVL = l;
+            Stats = s;
+            Race = r;
+            currentHP = GetMaxHP();
+            resistances = new List<TypeDamages>();
+            weaknesses = new List<TypeDamages>();
+            resistances.AddRange(res);
+            weaknesses.AddRange(w);
         }
         else
         {
@@ -104,6 +131,27 @@ public class FightableC : Character
     public void HealHP(int modifier)
     {
         ChangeHP(modifier);
+    }
+
+    public void addResistance(TypeDamages t)
+    {
+        if (weaknesses.Contains(t))
+        {
+            weaknesses.Remove(t);
+        }else if (!resistances.Contains(t))
+        {
+            resistances.Add(t);
+        }
+    }
+    public void addWeakness(TypeDamages t)
+    {
+        if (resistances.Contains(t))
+        {
+            resistances.Remove(t);
+        }else if (!weaknesses.Contains(t))
+        {
+            weaknesses.Add(t);
+        }
     }
 }
 
